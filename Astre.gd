@@ -24,7 +24,7 @@ class_name Astre
 var G : float = 6.673e-11
 var R_p : float = 664862000 #m
 var K : float = 1e14 #(N/m)
-var D : float = 249.7e6 #(m)
+var D : float = 24.97e6 #(m)
 var Zeta : float = 4e16 #(N⋅s/m)
 
 
