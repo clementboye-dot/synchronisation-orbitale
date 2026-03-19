@@ -15,29 +15,55 @@ class_name Astre
 @export var masse : float
 @export var masse_corps_rotation : float
 @export var rayon_initial : float
+@export var vitesse_initiale : float
 
 @export_group("Paramètres de la méthode d'Euler")
 @export var etapes_calcul_par_ecran : int
 
 # Groupe de variable masquées pour les calculs
 var G : float = 6.673e-11
+var R_p : float = 664862000 #m
+var K : float = 1e14 #(N/m)
+var D : float = 249.7e6 #(m)
+var Zeta : float = 4e16 #(N⋅s/m)
+
+
+
 var r_i : Vector3
 var v_i : Vector3
 var periode : float
 
-# Gère la pause
-var pause : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	r_i = rayon_initial * Vector3(1, 0, 0)
+	position = conv_position_reelle_a_simulee(r_i)
+	
+	var v_initiale = vitesse_initiale * Vector3(0, 0, 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
+
+
+func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
+	"""Calcule la force gravitationnelle excercée sur le point d'Europe par Jupiter
 	
-func conv_position_reelle_a_simuler(position_reelle : Vector3) -> Vector3:
+	Paramètre:
+		position_reelle -- position du point de la lune Europe dans l'espace
+	
+	Retour:
+		La force gravitationnelle de Jupiter sur le point de la lune Europe.
+	"""
+	var force_g = -1 * G * masse * masse_corps_rotation * position_reelle / (position_reelle.length()**3)
+	return force_g
+
+
+
+
+func conv_position_reelle_a_simulee(position_reelle : Vector3) -> Vector3:
 	"""Effectue la conversion d'une position réelle à une position de l'espace 
 	de la simulation
 	
@@ -56,7 +82,7 @@ func conv_position_reelle_a_simuler(position_reelle : Vector3) -> Vector3:
 	
 	return position_reelle.normalized() * facteur_distance_simulee
 
-func calculer_acceleration_gravitationnelle(position_rellee: Vector3) -> Vector3:
+func calculer_acceleration_gravitationnelle(position_reelle: Vector3) -> Vector3:
 	"""Calcule l'accélération gravitationnelle exercée sur le corps selon sa position
 	
 	Paramètre:
@@ -65,8 +91,8 @@ func calculer_acceleration_gravitationnelle(position_rellee: Vector3) -> Vector3
 	Retour:
 	L'accélération gravitationnelle exercée sur le corps en m/s^2
 	"""
-	var facteur = -G * masse * masse_corps_rotation / (position_rellee.length()**3)
-	var force = (position_rellee - centre_rotation.position) * facteur
+	var facteur = -G * masse * masse_corps_rotation / (position_reelle.length()**3)
+	var force = (position_reelle - centre_rotation.position) * facteur
 	return force / masse
 
 func appliquer_euler(temps_dernier_ecran : float) -> void:
