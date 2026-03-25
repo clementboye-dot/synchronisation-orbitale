@@ -1,8 +1,8 @@
 #Simule la révolution des lunes autour de Jupiter
-extends RigidBody3D
+extends Node3D
 #class_name Astre
 
-@export var jupiter : RigidBody3D
+@export var centre_rotation : RigidBody3D
 @export var periode_relative : float
 
 @export_group("Paramètre de conversion simulation")
@@ -38,12 +38,14 @@ var periode : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#---POSITIONS INITIALES---#
 	r_i1 = (R_p - D/2) * Vector3(1, 0, 0)
 	r_i2 = (R_p + D/2) * Vector3(1, 0, 0)
 	position = conv_position_reelle_a_simulee(r_i1)
-	
-	v_i1 = (3/4) * V_p * Vector3(0, 0, 1)
-	v_i2 = (5/4) * V_p * Vector3(0, 0, 1)
+	position = conv_position_reelle_a_simulee(r_i2)
+	#---VITESSES INITIALES---#
+	v_i1 = (3.0/4.0) * V_p * Vector3(0, 0, 1)
+	v_i2 = (5.0/4.0) * V_p * Vector3(0, 0, 1)
 	
 	periode = 2 * PI * r_i1.length() / v_i1.length()
 	
@@ -51,11 +53,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var fg1 : Vector3 = force_gravitationnelle(r_i1)
-	var fg2 : Vector3 = force_gravitationnelle(r_i2)
+	appliquer_euler(delta)
+	position = conv_position_reelle_a_simulee(r_i1)
+	position = conv_position_reelle_a_simulee(r_i2)
 	
-	
-
 
 func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
 	"""Calcule la force gravitationnelle excercée sur le point d'Europe par Jupiter
@@ -69,8 +70,34 @@ func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
 	var force_g = -1 * G * masse * masse_jupiter * position_reelle / (position_reelle.length()**3)
 	return force_g
 
+func appliquer_euler(temps_dernier_ecran : float) -> void:
+	"""
+	Applique la méthode d'Euler pour déterminer la position et la vitesse selon le temps de rendu
+	de la simulation.
+		
+	Paramètre :
+	temps_dernier_ecran -- le temps écoulé depuis le dernier écran.
+	"""
+	#Nombre de période à simuler dans l'écran
+	var nb_periode = temps_dernier_ecran  * periode / periode_relative
+	#Pas de la simulation
+	var h = nb_periode / etapes_calcul_par_ecran
 
+	for i in range(etapes_calcul_par_ecran):
 
+		var fg1 : Vector3 = force_gravitationnelle(r_i1)
+		var fg2 : Vector3 = force_gravitationnelle(r_i2)
+		var a1 = fg1 / masse
+		var a2 = fg2 / masse
+
+		var r_i1_plus_1 = r_i1 + h * v_i1
+		var v_i1_plus_1 = v_i1 + h * a1
+		var r_i2_plus_1 = r_i2 + h * v_i2
+		var v_i2_plus_1 = v_i2 + h * a2
+		r_i1 = r_i1_plus_1
+		v_i1 = v_i1_plus_1
+		r_i2 = r_i2_plus_1
+		v_i2 = v_i2_plus_1
 
 func conv_position_reelle_a_simulee(position_reelle : Vector3) -> Vector3:
 	"""Effectue la conversion d'une position réelle à une position de l'espace 
@@ -90,38 +117,3 @@ func conv_position_reelle_a_simulee(position_reelle : Vector3) -> Vector3:
 		 ratio_distance)
 	
 	return position_reelle.normalized() * facteur_distance_simulee
-
-func calculer_acceleration_gravitationnelle(position_reelle: Vector3) -> Vector3:
-	"""Calcule l'accélération gravitationnelle exercée sur le corps selon sa position
-	
-	Paramètre:
-	position_reelle : sa position dans l'espace en m
-	
-	Retour:
-	L'accélération gravitationnelle exercée sur le corps en m/s^2
-	"""
-	var facteur = -G * masse * masse_jupiter / (position_reelle.length()**3)
-	var force = (position_reelle - jupiter.position) * facteur
-	return force / masse
-
-func appliquer_euler(temps_dernier_ecran : float) -> void:
-	"""
-	Applique la méthode d'Euler pour déterminer la position et la vitesse selon le temps de rendu
-	de la simulation.
-		
-	Paramètre :
-	temps_dernier_ecran -- le temps écoulé depuis le dernier écran.
-	"""
-	#Nombre de période à simuler dans l'écran
-	var nb_periode = temps_dernier_ecran  * periode / periode_relative
-	#Pas de la simulation
-	var h = nb_periode / etapes_calcul_par_ecran
-		
-	for i in range(etapes_calcul_par_ecran):
-		var a_i = calculer_acceleration_gravitationnelle(r_i1)
-		
-		var r_i_plus_1 = r_i1 + h * v_i1
-		var v_i_plus_1 = v_i1 + h * a_i
-		
-		r_i1 = r_i_plus_1
-		v_i1 = v_i_plus_1
