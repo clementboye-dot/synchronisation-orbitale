@@ -70,14 +70,12 @@ func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
 	return force_g
 
 func force_elastique(position_relative : Vector3) -> Vector3:
-	var ressort = K * (position_relative - D) * position_relative.length()
-
-
-
-# Je comprends pas comment on trouve la vitesse relative (v21)
+	position_relative = autre_point.r_i - r_i
+	var ressort = K * (position_relative.length() - D) * position_relative.normalized()
+	return ressort
 
 func force_friction( vitesse_lune : Vector3) -> Vector3:
-	var vitesse_relative 
+	var vitesse_relative = autre_point.v_i - vitesse_lune
 	var friction = Zeta * vitesse_relative 
 	return friction
 
