@@ -52,14 +52,14 @@ shape = SubResource("SphereShape3D_noarx")
 [node name="Europe2" type="RigidBody3D" parent="Jupiter" unique_id=1170303323 node_paths=PackedStringArray("centre_rotation")]
 script = ExtResource("1_a202f")
 centre_rotation = NodePath("..")
-periode_relative = 299819.0
+periode_relative = 1.0
 min_distance_simulee = 3.0
 max_distance_simulee = 6.0
-min_distance_reelle = 652377000.0
-max_distance_reelle = 677347000.0
+min_distance_reelle = 600000000.0
+max_distance_reelle = 700000000.0
 masse = 2.4e+22
 masse_jupiter = 1.989e+27
-etapes_calcul_par_ecran = 20
+etapes_calcul_par_ecran = 100
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter/Europe2" unique_id=123942423]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)

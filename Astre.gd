@@ -46,7 +46,7 @@ func _ready() -> void:
 	#---VITESSES INITIALES---#
 	v_i1 = (3.0/4.0) * V_p * Vector3(0, 0, 1)
 	v_i2 = (5.0/4.0) * V_p * Vector3(0, 0, 1)
-	
+	print(v_i1)
 	periode = 2 * PI * r_i1.length() / v_i1.length()
 	
 
@@ -68,6 +68,7 @@ func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
 		La force gravitationnelle de Jupiter sur le point de la lune Europe.
 	"""
 	var force_g = -1 * G * masse * masse_jupiter * position_reelle / (position_reelle.length()**3)
+	#print(str(G)+ " "+str(masse)+" "+str(masse_jupiter)+" "+str(position_reelle)+" "+str(position_reelle.length()))
 	return force_g
 
 func appliquer_euler(temps_dernier_ecran : float) -> void:
@@ -89,7 +90,7 @@ func appliquer_euler(temps_dernier_ecran : float) -> void:
 		var fg2 : Vector3 = force_gravitationnelle(r_i2)
 		var a1 = fg1 / masse
 		var a2 = fg2 / masse
-		print(str(r_i1, r_i2, fg1, fg2))
+	
 
 		var r_i1_plus_1 = r_i1 + h * v_i1
 		var v_i1_plus_1 = v_i1 + h * a1
@@ -99,7 +100,7 @@ func appliquer_euler(temps_dernier_ecran : float) -> void:
 		v_i1 = v_i1_plus_1
 		r_i2 = r_i2_plus_1
 		v_i2 = v_i2_plus_1
-
+		
 func conv_position_reelle_a_simulee(position_reelle : Vector3) -> Vector3:
 	"""Effectue la conversion d'une position réelle à une position de l'espace 
 	de la simulation
