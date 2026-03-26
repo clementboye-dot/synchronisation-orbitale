@@ -17,8 +17,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	#distance.text = format_scientifique(abs(europe1.r_i.length() - europe2.r_i.length()))
+	
+	distance.text = format_scientifique((europe1.r_i - europe2.r_i).length())
 	
 func format_scientifique(valeur : float) -> String:
 	"""Converti en format scientifique les nombres décimaux avec 3 décimales
