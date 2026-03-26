@@ -24,6 +24,7 @@ var G : float = 6.673e-11
 var r_i : Vector3
 var v_i : Vector3
 var periode : float
+variables: M_J, m_E, r_p, v_p, T_orb, k, d, ζ
 
 # Gère la pause
 var pause : bool
