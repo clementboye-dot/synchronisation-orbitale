@@ -89,6 +89,7 @@ func appliquer_euler(temps_dernier_ecran : float) -> void:
 		var fg2 : Vector3 = force_gravitationnelle(r_i2)
 		var a1 = fg1 / masse
 		var a2 = fg2 / masse
+		print(str(r_i1, r_i2, fg1, fg2))
 
 		var r_i1_plus_1 = r_i1 + h * v_i1
 		var v_i1_plus_1 = v_i1 + h * a1
