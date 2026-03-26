@@ -61,13 +61,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4xowi")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("SphereShape3D_noarx")
 
-<<<<<<< HEAD
 
-[node name="Europe2" type="RigidBody3D" parent="Jupiter" unique_id=1170303323 node_paths=PackedStringArray("centre_rotation")]
-=======
 [node name="Europe2" type="RigidBody3D" parent="." unique_id=1170303323 node_paths=PackedStringArray("centre_rotation")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.092134476, 0)
->>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
+
 script = ExtResource("1_a202f")
 centre_rotation = NodePath("../Jupiter")
 periode_relative = 1.0
@@ -80,12 +77,9 @@ masse_jupiter = 1.989e+27
 rayon_initial = 677347000.0
 etapes_calcul_par_ecran = 20
 
-<<<<<<< HEAD
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter/Europe2" unique_id=123942423]
-=======
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Europe2" unique_id=123942423]
->>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
+
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)
 mesh = SubResource("SphereMesh_4xowi")
 surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
@@ -94,12 +88,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)
 shape = SubResource("SphereShape3D_a202f")
 
-<<<<<<< HEAD
 
-[node name="Europe1" type="RigidBody3D" parent="Jupiter/Europe2" unique_id=1983618798 node_paths=PackedStringArray("centre_rotation")]
-=======
 [node name="Europe1" type="RigidBody3D" parent="." unique_id=1983618798 node_paths=PackedStringArray("centre_rotation")]
->>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
+
 script = ExtResource("1_a202f")
 centre_rotation = NodePath("../Jupiter")
 periode_relative = 1.0
@@ -112,12 +103,9 @@ masse_jupiter = 1.989e+27
 rayon_initial = 652377000.0
 etapes_calcul_par_ecran = 1
 
-<<<<<<< HEAD
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter/Europe2/Europe1" unique_id=1630661660]
-=======
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Europe1" unique_id=1630661660]
->>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
+
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 mesh = SubResource("SphereMesh_noarx")
 surface_material_override/0 = SubResource("StandardMaterial3D_a202f")

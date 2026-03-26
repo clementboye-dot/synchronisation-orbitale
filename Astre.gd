@@ -15,6 +15,7 @@ extends Node3D
 @export var masse : float
 @export var masse_jupiter : float
 @export var rayon_initial : float
+@export var vitesse_initiale : float
 
 
 @export_group("Paramètres de la méthode d'Euler")
