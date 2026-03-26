@@ -29,7 +29,7 @@ albedo_color = Color(0.6671339, 0.75648475, 0.8796907, 1)
 script = SubResource("GDScript_a202f")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=40552320]
-transform = Transform3D(1, 0, 0, 0, 0.93969256, 0.34202036, 0, -0.34202036, 0.93969256, 0, 4, 10)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1118695968]
 environment = SubResource("Environment_4xowi")
@@ -61,48 +61,67 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4xowi")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("SphereShape3D_noarx")
 
+<<<<<<< HEAD
 
 [node name="Europe2" type="RigidBody3D" parent="Jupiter" unique_id=1170303323 node_paths=PackedStringArray("centre_rotation")]
+=======
+[node name="Europe2" type="RigidBody3D" parent="." unique_id=1170303323 node_paths=PackedStringArray("centre_rotation")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.092134476, 0)
+>>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
 script = ExtResource("1_a202f")
-centre_rotation = NodePath("..")
-periode_relative = 299819.0
+centre_rotation = NodePath("../Jupiter")
+periode_relative = 1.0
 min_distance_simulee = 3.0
 max_distance_simulee = 6.0
-min_distance_reelle = 652377000.0
-max_distance_reelle = 677347000.0
+min_distance_reelle = 600000000.0
+max_distance_reelle = 700000000.0
 masse = 2.4e+22
 masse_jupiter = 1.989e+27
+rayon_initial = 677347000.0
 etapes_calcul_par_ecran = 20
 
+<<<<<<< HEAD
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter/Europe2" unique_id=123942423]
+=======
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Europe2" unique_id=123942423]
+>>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)
 mesh = SubResource("SphereMesh_4xowi")
 surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/Europe2" unique_id=994657330]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Europe2" unique_id=994657330]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)
 shape = SubResource("SphereShape3D_a202f")
 
+<<<<<<< HEAD
 
 [node name="Europe1" type="RigidBody3D" parent="Jupiter/Europe2" unique_id=1983618798 node_paths=PackedStringArray("centre_rotation")]
+=======
+[node name="Europe1" type="RigidBody3D" parent="." unique_id=1983618798 node_paths=PackedStringArray("centre_rotation")]
+>>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
 script = ExtResource("1_a202f")
-centre_rotation = NodePath("../..")
-periode_relative = 299819.0
+centre_rotation = NodePath("../Jupiter")
+periode_relative = 1.0
 min_distance_simulee = 3.0
 max_distance_simulee = 6.0
-min_distance_reelle = 652377000.0
-max_distance_reelle = 677347000.0
+min_distance_reelle = 600000000.0
+max_distance_reelle = 700000000.0
 masse = 2.4e+22
 masse_jupiter = 1.989e+27
-etapes_calcul_par_ecran = 20
+rayon_initial = 652377000.0
+etapes_calcul_par_ecran = 1
 
+<<<<<<< HEAD
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter/Europe2/Europe1" unique_id=1630661660]
+=======
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Europe1" unique_id=1630661660]
+>>>>>>> a9a7cf229e5ba9f4275626fe102418be8428cc98
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 mesh = SubResource("SphereMesh_noarx")
 surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/Europe2/Europe1" unique_id=441596831]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Europe1" unique_id=441596831]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 shape = SubResource("SphereShape3D_a0tk4")
