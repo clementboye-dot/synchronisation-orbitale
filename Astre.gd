@@ -1,6 +1,6 @@
 #Simule la révolution des lunes autour de Jupiter
 extends Node3D
-#class_name Astre
+class_name Astre
 
 @export var centre_rotation : RigidBody3D
 @export var periode_relative : float
