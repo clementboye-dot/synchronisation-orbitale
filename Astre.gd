@@ -1,8 +1,9 @@
 #Simule la révolution des lunes autour de Jupiter
 extends Node3D
-#class_name Astre
+class_name Astre
 
 @export var centre_rotation : RigidBody3D
+@export var autre_point : RigidBody3D
 @export var periode_relative : float
 
 @export_group("Paramètre de conversion simulation")
@@ -38,14 +39,13 @@ var periode : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#---POSITIONS INITIALES---#
+	#---POSITION INITIALE---#
 	r_i = rayon_initial * Vector3(1, 0, 0)
 	
 	position = conv_position_reelle_a_simulee(r_i)
 	
-	#---VITESSES INITIALES---#
-	v_i = (3.0/4.0) * V_p * Vector3(0, 0, 1)
-	#v_i2 = (5.0/4.0) * V_p * Vector3(0, 0, 1)
+	#---VITESSE INITIALE---#
+	v_i = vitesse_initiale * Vector3(0, 0, 1)
 	
 	periode = 2 * PI * r_i.length() / v_i.length()
 	
@@ -70,6 +70,18 @@ func force_gravitationnelle(position_reelle : Vector3) -> Vector3:
 	var force_g = -1 * G * masse * masse_jupiter  / (position_reelle.length()**3)
 	force_g = force_g * position_reelle
 	return force_g
+
+func force_elastique(position_relative : Vector3) -> Vector3:
+	var ressort = K * (position_relative - D) * position_relative.length()
+
+
+
+# Je comprends pas comment on trouve la vitesse relative (v21)
+
+func force_friction( vitesse_lune : Vector3) -> Vector3:
+	var vitesse_relative 
+	var friction = Zeta * vitesse_relative 
+	return friction
 
 func appliquer_euler(temps_dernier_ecran : float) -> void:
 	"""
