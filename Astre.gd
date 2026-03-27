@@ -45,6 +45,7 @@ func _ready() -> void:
 	position = conv_position_reelle_a_simulee(r_i)
 	
 	#---VITESSE INITIALE---#
+	print(vitesse_initiale)
 	v_i = vitesse_initiale * Vector3(0, 0, 1)
 	
 	periode = 2 * PI * r_i.length() / v_i.length()

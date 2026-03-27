@@ -2,9 +2,9 @@ extends Control
 class_name Interface
 
 @export_group("Lune")
-@onready var europe1 = get_parent().get_node("node_3d/Europe1")
-@onready var europe2 = get_parent().get_node("node_3d/Europe2")
-@onready var jupiter = get_parent().get_node("node_3d/Jupiter")
+@export var europe1 : Astre
+@export var europe2 : Astre
+
 
 @export var label_plus_proche : Label
 @export var distance : Label
@@ -21,18 +21,17 @@ func _on_slider_changed(valeur: float)-> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not europe1 or not europe2 or not jupiter:
+	if not europe1 or not europe2 :
 		return
-	var d1 = (europe1.r_i - jupiter.r_i).length()
-	var d2 = (europe2.r_i - jupiter.r_i).length()
+	var d1 = (europe1.r_i).length()
+	var d2 = (europe2.r_i).length()
 
 	if d1 < d2 :
 		label_plus_proche.text = "Point 1 plus proche"
 	else:
 		label_plus_proche.text = "Point 2 plus proche"
 	
-	var dist = (europe1.r_i - europe2.r_i).length()
-	distance.text = "Distance: " + format_scientifique(dist)
+	distance.text = format_scientifique((europe2.r_i - europe1.r_i).length())
 	
 func format_scientifique(valeur : float) -> String:
 	"""Converti en format scientifique les nombres décimaux avec 3 décimales
