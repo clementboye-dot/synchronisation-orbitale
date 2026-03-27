@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gehkmwgfv63s"]
 
 [ext_resource type="Script" uid="uid://bv0r06devt210" path="res://Astre.gd" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://cminekotauc1a" path="res://interface.tscn" id="2_noarx"]
 
 [sub_resource type="GDScript" id="GDScript_a202f"]
 
@@ -57,7 +58,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("SphereMesh_a202f")
 surface_material_override/0 = SubResource("StandardMaterial3D_4xowi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter" unique_id=285571296]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter" unique_id=186424970]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("SphereShape3D_noarx")
 
@@ -68,9 +69,9 @@ centre_rotation = NodePath("../Jupiter")
 autre_point = NodePath("../Europe2")
 periode_relative = 1.0
 min_distance_simulee = 3.0
-max_distance_simulee = 6.0
+max_distance_simulee = 8.0
 min_distance_reelle = 600000000.0
-max_distance_reelle = 700000000.0
+max_distance_reelle = 800000000.0
 masse = 2.4e+22
 masse_jupiter = 1.989e+27
 rayon_initial = 652377000.0
@@ -87,7 +88,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 shape = SubResource("SphereShape3D_a0tk4")
 
 [node name="Europe2" type="RigidBody3D" parent="." unique_id=1170303323 node_paths=PackedStringArray("centre_rotation", "autre_point")]
->>>>>>> da40ff36568510f9ffb34e577854c73a20c8bf0c
+
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.092134476, 0)
 
 script = ExtResource("1_a202f")
@@ -95,9 +96,9 @@ centre_rotation = NodePath("../Jupiter")
 autre_point = NodePath("../Europe1")
 periode_relative = 1.0
 min_distance_simulee = 3.0
-max_distance_simulee = 6.0
+max_distance_simulee = 8.0
 min_distance_reelle = 600000000.0
-max_distance_reelle = 700000000.0
+max_distance_reelle = 800000000.0
 masse = 2.4e+22
 masse_jupiter = 1.989e+27
 rayon_initial = 677347000.0
@@ -114,10 +115,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Europe2" unique_id=994657330]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6, 0, 0)
 shape = SubResource("SphereShape3D_a202f")
-<<<<<<< HEAD
 
-
-[node name="Europe1" type="RigidBody3D" parent="." unique_id=1983618798 node_paths=PackedStringArray("centre_rotation")]
 
 script = ExtResource("1_a202f")
 centre_rotation = NodePath("../Jupiter")
@@ -141,4 +139,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Europe1" unique_id=441596831]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 shape = SubResource("SphereShape3D_a0tk4")
+
+
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=122061688]
+
+[node name="Interface" parent="CanvasLayer" unique_id=179260748 node_paths=PackedStringArray("europe1", "europe2") instance=ExtResource("2_noarx")]
+europe1 = NodePath("../../Europe1")
+europe2 = NodePath("../../Europe2")
 
