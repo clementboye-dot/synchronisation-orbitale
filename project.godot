@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="synchronisation_orbitale"
+run/main_scene="uid://ofg1dw2qb6hq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
